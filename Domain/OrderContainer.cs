@@ -31,7 +31,6 @@ namespace Domain
 
         public void AddOrderItem(int productId, int quantity)
         {
-       
             OrderProduct orderProduct = new OrderProduct( productId, quantity);
             OrderProducts.Add(orderProduct);
         }

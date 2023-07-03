@@ -15,7 +15,7 @@ public class Order
 
     public int CustomerId { get; private set; }
 
-    public virtual Customer Customer { get; private set; } = null!;
+    public virtual Customer Customer { get; private set; }
 
     public virtual ICollection<OrderProduct> OrderProducts { get; private set; } = new List<OrderProduct>();
 
