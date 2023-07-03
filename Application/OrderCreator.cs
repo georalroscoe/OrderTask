@@ -39,7 +39,7 @@ namespace Application
 
             foreach (OrderProductDto orderProductDto in dto.Products) 
             {
-                orderContainer.AddOrderItem(orderProductDto.ProductId, orderProductDto.Quantity);
+                orderContainer.AddOrderProduct(orderProductDto.ProductId, orderProductDto.Quantity);
             }
 
             Order newOrder = customer.ProcessOrder(orderContainer);

@@ -29,9 +29,9 @@ namespace Domain
         public List<Product> Products { get; private set; } = new List<Product>();
         public Dictionary<OrderProduct, string> Errors { get; private set; } 
 
-        public void AddOrderItem(int productId, int quantity)
+        public void AddOrderProduct(int productId, int quantity)
         {
-            OrderProduct orderProduct = new OrderProduct( productId, quantity);
+            OrderProduct orderProduct = new OrderProduct(productId, quantity);
             OrderProducts.Add(orderProduct);
         }
 
@@ -44,26 +44,17 @@ namespace Domain
             }
             foreach (OrderProduct orderProduct in OrderProducts)
             {
-                Product? stock = Products.FirstOrDefault(x => x.ProductId == orderProduct.ProductId);
+                Product? product = Products.FirstOrDefault(x => x.ProductId == orderProduct.ProductId);
 
-                if (stock == null)
+                if (product == null)
                 {
-
-                    Errors.Add(orderProduct, $"No matching product in the stock list for {orderProduct.ProductId}");
+                    Errors.Add(orderProduct, $"No matching product for {orderProduct.ProductId}");
                     continue;
-
-                }
-                if (orderProduct.Quantity < 1)
-                {
-                   
-                   Errors.Add(orderProduct, $"The asking quantity for {orderProduct.ProductId} is 0 or negative");
-                   
                 }
 
-                if (stock.StockQuantity < orderProduct.Quantity)
+                if (product.StockQuantity < orderProduct.Quantity)
                 {
                    Errors.Add(orderProduct, $"Quantity in the stock is too low for {orderProduct.ProductId}");
-                    
                 }
             }
             IsValid = Errors.Count == 0;
