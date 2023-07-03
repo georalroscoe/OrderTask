@@ -23,7 +23,7 @@ public class Order
     {
        foreach(OrderProduct orderProduct in orderProducts)
         {
-            var product = products.Where(x => x.ProductId == orderProduct.ProductId && x.StockQuantity >= orderProduct.Quantity).FirstOrDefault();
+            var product = products.Where(x => x.ProductId == orderProduct.ProductId).FirstOrDefault();
             product.TakeProduct(orderProduct.Quantity);
             OrderProducts.Add(orderProduct);
         }

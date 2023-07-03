@@ -22,8 +22,7 @@ public class Customer
     {
         orderContainer.Validate();
         if (!orderContainer.IsValid)
-        {
-            
+        { 
             return null;
         }
         Order newOrder = new Order();
