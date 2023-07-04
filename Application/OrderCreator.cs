@@ -43,13 +43,13 @@ namespace Application
             }
 
             Order newOrder = customer.ProcessOrder(orderContainer);
-            if (newOrder != null ) {
+            if (orderContainer.IsValid) {
                 _customerRepo.Insert(customer);
                 _orderRepo.Insert(newOrder);
             }
             _uow.Save();
 
-            //var orderPrice = _orderProductRepo.Get(x => x.Order.CustomerId == 11)
+            //var orderPrice = _orderProductRepo.Get(x => x.OrderId == 10)
             //    .Select(x => new
             //    {
             //        TotalPrice = x.Product.Price * x.Quantity
